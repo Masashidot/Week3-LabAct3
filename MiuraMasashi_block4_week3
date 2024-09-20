@@ -1,0 +1,202 @@
+<?php 
+
+Class Vehicle {
+
+  Protected $make;
+
+  Protected $model;
+
+  Protected $year;
+
+
+
+  Public function __construct($make, $model, $year){
+
+    $this->make = $make;
+
+    $this->model = $model;
+
+    $this->year = $year;
+
+  }
+
+
+
+  // Final method to prevent overriding
+
+  Final public function getDetails(){
+
+    Return “Brand: {$this->make}\n” . “Model Name: {$this->model}\n” . “Manufacture Year: {$this->year}\n”;
+
+  }
+
+
+
+  Public function describe(){
+
+    Return “This is a general vehicle.\n”;
+
+  }
+
+}
+
+
+
+Class Car extends Vehicle {
+
+  Private $doors;
+
+
+
+  Public function __construct($make, $model, $year, $doors){
+
+    Parent::__construct($make, $model, $year);
+
+    $this->doors = $doors;
+
+  }
+
+
+
+  Public function getCarDetails(){
+
+    Return $this->getDetails() . “Doors: {$this->doors}\n”;
+
+  }
+
+
+
+  Public function describe(){
+
+    Return “This is a standard car.\n”;
+
+  }
+
+}
+
+
+
+Final class Motorcycle extends Vehicle {
+
+  Public function __construct($make, $model, $year){
+
+    Parent::__construct($make, $model, $year);
+
+  }
+
+
+
+  Public function describe(){
+
+    Return “This is a powerful motorcycle.\n”;
+
+  }
+
+}
+
+
+
+Interface ElectricVehicle {
+
+  Public function chargeBattery();
+
+}
+
+
+
+Class ElectricCar extends Car implements ElectricVehicle {
+
+  Function chargeBattery(){
+
+    Return “The electric car’s battery is now charging.\n”;
+
+  }
+
+
+
+  Public function __construct($make, $model, $year, $doors){
+
+    Parent::__construct($make, $model, $year, $doors);
+
+  }
+
+
+
+  Public function describe(){
+
+    Return “This is an advanced electric car.\n”;
+
+  }
+
+}
+
+
+
+// Create instances and test output with modified wording
+
+$car = new Car(“Toyota”, “G8R6”, 2021, 4);
+
+Echo $car->describe();
+
+Echo $car->getCarDetails() . “\n”;
+
+
+
+$motorcycle = new Motorcycle(“Ducati”, “Multistrada V4”, 2020);
+
+Echo $motorcycle->describe();
+
+Echo $motorcycle->getDetails() . “\n”;
+
+
+
+$electricCar = new ElectricCar(“Ford”, “F-150 Lightning”, 2022, 4);
+
+Echo $electricCar->describe();
+
+Echo $electricCar->getCarDetails();
+
+Echo $electricCar->chargeBattery() . “\n”;
+
+?>
+
+
+
+This is a standard car.
+
+Brand: Toyota
+
+Model Name: G8R6
+
+Manufacture Year: 2021
+
+Doors: 4
+
+
+
+This is a powerful motorcycle.
+
+Brand: Ducati
+
+Model Name: Multistrada V4
+
+Manufacture Year: 2020
+
+
+
+This is an advanced electric car.
+
+Brand: Ford
+
+Model Name: F-150 Lightning
+
+Manufacture Year: 2022
+
+Doors: 4
+
+The electric car’s battery is now charging.
+
+
+
+
+
